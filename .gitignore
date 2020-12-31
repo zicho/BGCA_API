@@ -1,0 +1,19 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/*
+
+/API/Migrations/*
+/API/obj/*
+/API/bin/*
+/API/Migrations/*
+
+/.idea/*
+/Web/node_modules/*
+/Web/src/*node_modules/@sapper
+/Web/__sapper__/*
+/Web/bin/*
+/Web/obj/*
+/API/appsettings.json
+/Web/.sessions
