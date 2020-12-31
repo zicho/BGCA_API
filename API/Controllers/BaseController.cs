@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -20,6 +21,8 @@ namespace API.Controllers
             _mapper = mapper;
             _service = service;
         }
+
+        protected string GetRoleFromHttpContext() => HttpContext.User.FindFirstValue(ClaimTypes.Role);
 
         [HttpGet]
         public virtual async Task<ServiceResponse<List<T>>> GetAll()

@@ -1,6 +1,7 @@
 ﻿using API.Core;
 using API.Data.Entities.Users;
 using API.Data.Models;
+using API.Data.Static;
 using API.Repositories;
 using API.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
@@ -43,6 +44,7 @@ namespace API.Services
             var user = new User
             {
                 Username = dto.Username,
+                Role = dto.Role,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };
@@ -186,7 +188,8 @@ namespace API.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Username)
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8

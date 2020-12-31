@@ -1,6 +1,7 @@
 ﻿using API.Core;
 using API.Data.Models;
 using API.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace API.Controllers
         {
             return await _userService.Register(dto);
         }
-        
+
         [HttpPost("login")]
         public async Task<ServiceResponse<AuthUserModel>> Login(LoginUserModel dto)
         {
