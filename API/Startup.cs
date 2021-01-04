@@ -93,6 +93,7 @@ namespace API
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISessionService, SessionService>();
+            services.AddScoped<IMessageService, MessageService>();
 
             // websockets
 
