@@ -4,7 +4,6 @@
     {
         public ServiceResponse(bool success = true)
         {
-            Success = success;
         }
 
         public T Data { get; set; }

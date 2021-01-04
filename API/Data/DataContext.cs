@@ -1,5 +1,4 @@
 ﻿using API.Data.Entities;
-using API.Data.Entities.Messaging;
 using API.Data.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +14,6 @@ namespace API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Session> Sessions { get; set; }
-        public DbSet<PrivateMessage> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
