@@ -41,7 +41,7 @@ namespace API.Services
                     CreatedDate = DateTime.UtcNow, ModifiedDate = DateTime.UtcNow
                 });
 
-                await _notificationHubContext.Clients.Group(model.Recipient).SendPrivateMessage(model.Recipient, model.Subject, model.Content);
+                await _notificationHubContext.Clients.Group(model.Recipient).SendPrivateMessage(model.Subject, model.Content);
 
                 return new ServiceResponse<bool>();
             } catch

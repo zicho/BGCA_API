@@ -82,7 +82,7 @@ namespace API.Services
 
         public async Task<ServiceResponse<bool>> Invite(InviteGameModel model)
         {
-            await _notificationHubContext.Clients.Group(model.Recipient).SendNotice(model.Recipient, $"Player {model.Sender} invited you to play {model.NameOfGame}");
+            await _notificationHubContext.Clients.Group(model.Recipient).SendNotice($"Player {model.Sender} invited you to play {model.NameOfGame}");
             return new ServiceResponse<bool>();
         }
     }
