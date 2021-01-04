@@ -8,6 +8,7 @@ namespace SignalRChat.Hubs
     public interface INotificationHub
     {
         Task SendNotice(string to, string messageContent);
+        Task SendPrivateMessage(string to, string messageSubject, string messageContent);
     }
 
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -16,7 +17,11 @@ namespace SignalRChat.Hubs
         public async Task SendNotice(string to, string messageContent)
         {
             await Clients.Group(to).SendNotice(to, messageContent);
-            //await Clients.Group(to).SendAsync("messageReceived", to);
+        }
+
+        public async Task SendPrivateMessage(string to, string messageSubject, string messageContent)
+        {
+            await Clients.Group(to).SendPrivateMessage(to, messageSubject, messageContent);
         }
 
         public async override Task OnConnectedAsync()
