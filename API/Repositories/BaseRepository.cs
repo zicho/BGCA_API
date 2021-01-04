@@ -37,6 +37,11 @@ namespace API.Repositories
             return Context.SaveChangesAsync();
         }
 
+        public Task SaveChangesAsync()
+        {
+            return Context.SaveChangesAsync();
+        }
+
         public async Task Remove(int id)
         {
             var entity = await GetById(id);

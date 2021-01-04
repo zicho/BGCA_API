@@ -20,12 +20,12 @@ namespace API.Controllers
             _service = service;
         }
 
-        [Authorize(Roles = UserRoles.Admin)]
-        [HttpGet("test")]
-        public async Task Test()
-        {
-            var role = GetRoleFromHttpContext();
-            return;
-        }
+        //[Authorize(Roles = UserRoles.Admin)]
+        //[HttpGet("test")]
+        //public async Task Test()
+        //{
+        //    var role = GetRoleFromHttpContext();
+        //    return;
+        //}
     }
 }

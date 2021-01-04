@@ -6,6 +6,8 @@ namespace API.Services.Interfaces
 {
     public interface IMessageService
     {
-        Task<ServiceResponse<bool>> SendPrivateMessage(PrivateMessageModel model);
+        Task<ServiceResponse> SendPrivateMessage(PrivateMessageModel model);
+        Task<ServiceResponse<int>> GetUnreadMessagesCount(string userName);
+        Task<ServiceResponse> MarkAllAsRead(string userName);
     }
 }

@@ -7,6 +7,7 @@ using API.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using SignalRChat.Hubs;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Services
@@ -27,7 +28,7 @@ namespace API.Services
             _notificationHubContext = notificationHubContext;
         }
 
-        public async Task<ServiceResponse<bool>> SendPrivateMessage(PrivateMessageModel model)
+        public async Task<ServiceResponse> SendPrivateMessage(PrivateMessageModel model)
         {
             try
             {
@@ -36,17 +37,55 @@ namespace API.Services
 
                 await _messageRepository.Add(new PrivateMessage
                 {
-                    Sender = sender, Recipient = recipient,
-                    Subject = model.Subject, Content = model.Content,
-                    CreatedDate = DateTime.UtcNow, ModifiedDate = DateTime.UtcNow
+                    Sender = sender,
+                    Recipient = recipient,
+                    Subject = model.Subject,
+                    Content = model.Content,
+                    CreatedDate = DateTime.UtcNow,
+                    ModifiedDate = DateTime.UtcNow
                 });
 
                 await _notificationHubContext.Clients.Group(model.Recipient).SendPrivateMessage(model.Subject, model.Content);
 
-                return new ServiceResponse<bool>();
-            } catch
+                return new ServiceResponse();
+            }
+            catch
             {
-                return new ServiceResponse<bool>(false);
+                return new ServiceResponse(false);
+            }
+        }
+
+        public async Task<ServiceResponse<int>> GetUnreadMessagesCount(string username)
+        {
+            try
+            {
+                var unreadMessages = await _messageRepository.GetWhere(x => x.IsRead == false && x.Recipient.Username == username);
+                return new ServiceResponse<int> { Data = unreadMessages.ToList().Count() };
+            }
+            catch
+            {
+                return new ServiceResponse<int>(false);
+            }
+        }
+
+        public async Task<ServiceResponse> MarkAllAsRead(string username)
+        {
+            try
+            {
+                var unreadMessages = await _messageRepository.GetWhere(x => x.IsRead == false && x.Recipient.Username == username);
+
+                foreach(var m in unreadMessages)
+                {
+                    m.IsRead = true;
+                }
+
+                await _messageRepository.SaveChangesAsync();
+
+                return new ServiceResponse();
+            }
+            catch
+            {
+                return new ServiceResponse(false);
             }
         }
     }

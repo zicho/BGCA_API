@@ -13,6 +13,7 @@ namespace API.Repositories.Interfaces
         Task Add(T entity);
         Task Update(T entity);
         Task Remove(int id);
+        Task SaveChangesAsync();
 
         Task<List<T>> GetAll();
         Task<IEnumerable<T>> GetWhere(Expression<Func<T, bool>> predicate);
