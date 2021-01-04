@@ -7,6 +7,7 @@ using API.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using SignalRChat.Hubs;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,12 +15,12 @@ namespace API.Services
 {
     public class MessageService : IMessageService
     {
-        private readonly IBaseRepository<PrivateMessage> _messageRepository;
+        private readonly MessageRepository _messageRepository;
         private readonly UserRepository _userRepository;
         private readonly IHubContext<NotificationHub, INotificationHub> _notificationHubContext;
 
         public MessageService(
-            IBaseRepository<PrivateMessage> messageRepository,
+            MessageRepository messageRepository,
             UserRepository userRepository,
             IHubContext<NotificationHub, INotificationHub> notificationHubContext)
         {
@@ -65,6 +66,20 @@ namespace API.Services
             catch
             {
                 return new ServiceResponse<int>(false);
+            }
+        }
+
+        public async Task<ServiceResponse<List<PrivateMessage>>> GetPrivateMessages(string username, int limit = 0, bool unreadOnly = false)
+        {
+            try
+            {
+                var unreadMessages = await _messageRepository.GetMessagesForUser(username, limit, unreadOnly);
+                
+                return new ServiceResponse<List<PrivateMessage>> { Data = unreadMessages.ToList() };
+            }
+            catch
+            {
+                return new ServiceResponse<List<PrivateMessage>> (false);
             }
         }
 

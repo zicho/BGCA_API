@@ -88,6 +88,7 @@ namespace API
             // database            
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<UserRepository>();
+            services.AddScoped<MessageRepository>();
 
             // services
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));

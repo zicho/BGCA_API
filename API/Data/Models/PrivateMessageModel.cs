@@ -11,5 +11,6 @@ namespace API.Data.Models
         public string Recipient { get; set; }
         public string Subject { get; set; }
         public string Content { get; set; }
+        public bool IsRead { get; set; }
     }
 }
