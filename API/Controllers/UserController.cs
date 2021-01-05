@@ -23,13 +23,13 @@ namespace API.Controllers
             _mapper = mapper;
             _userService = userService;
         }
-        
+
         [HttpGet("{username}")]
         public async Task<ServiceResponse<AuthUserModel>> GetByUsername(string username)
         {
             return _mapper.Map<ServiceResponse<AuthUserModel>>(await _userService.GetByUsername(username));
         }
-        
+
         public async Task<ServiceResponse<List<AuthUserModel>>> GetAll()
         {
             return _mapper.Map<ServiceResponse<List<AuthUserModel>>>(await _userService.GetAll());

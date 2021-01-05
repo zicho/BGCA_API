@@ -1,5 +1,4 @@
 ﻿using API.Core;
-using API.Data.Entities.Messaging;
 using API.Data.Models;
 using API.Services.Interfaces;
 using AutoMapper;
@@ -19,7 +18,9 @@ namespace API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IMessageService _service;
+
         private string GetRoleFromHttpContext() => HttpContext.User.FindFirstValue(ClaimTypes.Role);
+
         public MessageController(IMapper mapper, IMessageService service)
         {
             _mapper = mapper;

@@ -1,6 +1,4 @@
 ﻿using API.Core.Enums;
-using API.Data.Entities;
-using API.Data.Entities.Users;
 
 namespace API.Data.Entities.Users
 {

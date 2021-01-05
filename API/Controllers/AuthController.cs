@@ -1,7 +1,6 @@
 ﻿using API.Core;
 using API.Data.Models;
 using API.Services.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -13,7 +12,7 @@ namespace API.Controllers
     {
         private readonly IUserService _userService;
 
-        public AuthController(IUserService userService) 
+        public AuthController(IUserService userService)
         {
             _userService = userService;
         }

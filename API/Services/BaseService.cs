@@ -46,11 +46,11 @@ namespace API.Services
             }
             catch
             {
-             return new ServiceResponse<T>
-             {
-                 Success = false,
-                 Message = $"Method '{nameof(GetById)}' in '{GetType().Name}' failed when retrieving {typeof(T)}" 
-             };
+                return new ServiceResponse<T>
+                {
+                    Success = false,
+                    Message = $"Method '{nameof(GetById)}' in '{GetType().Name}' failed when retrieving {typeof(T)}"
+                };
             }
         }
 
@@ -59,7 +59,7 @@ namespace API.Services
             try
             {
                 await _repository.Add(entity);
-                return new ServiceResponse<T> { Message = $"Entity of type '{entity}' was successfully added."};
+                return new ServiceResponse<T> { Message = $"Entity of type '{entity}' was successfully added." };
             }
             catch (Exception ex)
             {
@@ -70,7 +70,7 @@ namespace API.Services
                 };
             }
         }
-        
+
         public virtual async Task<ServiceResponse<T>> Update(T entity)
         {
             try
@@ -83,7 +83,7 @@ namespace API.Services
                 return new ServiceResponse<T>(false);
             }
         }
-        
+
         public virtual async Task<ServiceResponse<T>> Remove(int id)
         {
             try

@@ -19,7 +19,6 @@ namespace API.Controllers
             _userService = userService;
         }
 
-
         [HttpPost("add")]
         public async Task<ServiceResponse<bool>> GetByUsername(FriendRequestModel model)
         {

@@ -1,5 +1,4 @@
 using API.Data;
-using API.Data.Entities;
 using API.Repositories;
 using API.Repositories.Interfaces;
 using API.Services;
@@ -7,7 +6,6 @@ using API.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +16,6 @@ using SignalRChat.Hubs;
 using System;
 using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace API
 {
@@ -85,7 +82,7 @@ namespace API
                 });
             });
 
-            // database            
+            // database
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<UserRepository>();
             services.AddScoped<MessageRepository>();
@@ -117,7 +114,7 @@ namespace API
             app.UseCors("SiteCorsPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
             var webSocketOptions = new WebSocketOptions()
             {
                 KeepAliveInterval = TimeSpan.FromSeconds(120),
@@ -128,7 +125,8 @@ namespace API
 
             app.UseWebSockets(webSocketOptions);
 
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapHub<NotificationHub>("/notifications");
                 endpoints.MapControllers();
             });

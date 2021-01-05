@@ -9,8 +9,10 @@ namespace API.Data.Entities
     {
         [Required]
         public Game Game { get; set; }
+
         [Required]
         public List<User> Players { get; set; } = new List<User>();
+
         public DateTime Date { get; set; }
     }
 }

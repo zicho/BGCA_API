@@ -2,7 +2,7 @@
 {
     public class ServiceResponse
     {
-       public ServiceResponse(bool success = true)
+        public ServiceResponse(bool success = true)
         {
             Success = success;
         }

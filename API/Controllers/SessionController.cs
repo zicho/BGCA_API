@@ -15,6 +15,7 @@ namespace API.Controllers
     public class SessionController : ControllerBase
     {
         private readonly ISessionService _service;
+
         public SessionController(ISessionService service, IMapper mapper)
         {
             _service = service;

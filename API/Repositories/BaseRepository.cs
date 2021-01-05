@@ -13,12 +13,12 @@ namespace API.Repositories
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly DataContext Context;
-        
+
         public BaseRepository(DataContext context)
         {
             Context = context;
         }
-        
+
         public async Task<T> GetById(int id) => await Context.Set<T>().FindAsync(id);
 
         public Task<T> FirstOrDefault(Expression<Func<T, bool>> predicate)

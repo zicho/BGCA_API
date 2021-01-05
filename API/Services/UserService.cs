@@ -1,7 +1,6 @@
 ﻿using API.Core;
 using API.Data.Entities.Users;
 using API.Data.Models;
-using API.Data.Static;
 using API.Repositories;
 using API.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
@@ -98,20 +97,18 @@ namespace API.Services
                 response.Success = false;
                 response.Message = "User not found.";
             }
-
             else if (!VerifyPasswordHash(dto.Password, user.PasswordHash, user.PasswordSalt))
             {
                 response.Success = false;
                 response.Message = "Wrong password.";
             }
-
             else
             {
                 response.Data = new AuthUserModel
                 {
                     Username = user.Username,
                     JWT = CreateToken(user)
-                }; 
+                };
 
                 response.Message = "Login success!";
             }
@@ -148,7 +145,6 @@ namespace API.Services
                 response.Success = false;
                 response.Message = "User not found.";
             }
-
             else
             {
                 response.Data = user;

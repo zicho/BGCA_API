@@ -2,7 +2,6 @@
 using API.Data.Entities.Messaging;
 using API.Data.Models;
 using API.Repositories;
-using API.Repositories.Interfaces;
 using API.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using SignalRChat.Hubs;
@@ -74,12 +73,12 @@ namespace API.Services
             try
             {
                 var unreadMessages = await _messageRepository.GetMessagesForUser(username, limit, unreadOnly);
-                
+
                 return new ServiceResponse<List<PrivateMessage>> { Data = unreadMessages.ToList() };
             }
             catch
             {
-                return new ServiceResponse<List<PrivateMessage>> (false);
+                return new ServiceResponse<List<PrivateMessage>>(false);
             }
         }
 
@@ -89,7 +88,7 @@ namespace API.Services
             {
                 var unreadMessages = await _messageRepository.GetWhere(x => x.IsRead == false && x.Recipient.Username == username);
 
-                foreach(var m in unreadMessages)
+                foreach (var m in unreadMessages)
                 {
                     m.IsRead = true;
                 }

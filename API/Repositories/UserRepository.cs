@@ -1,8 +1,6 @@
-﻿using API.Core;
-using API.Data;
+﻿using API.Data;
 using API.Data.Entities.Users;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Threading.Tasks;
 
 namespace API.Repositories
@@ -17,7 +15,7 @@ namespace API.Repositories
         {
             return await Context.Users.AnyAsync(x => x.Username.ToLower() == username.ToLower());
         }
-        
+
         public async Task<User> GetByUsername(string username)
         {
             return await Context.Users.FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());

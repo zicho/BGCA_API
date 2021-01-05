@@ -8,6 +8,7 @@ namespace SignalRChat.Hubs
     public interface INotificationHub
     {
         Task SendNotice(string messageContent);
+
         Task SendPrivateMessage(string messageSubject, string messageContent);
     }
 
