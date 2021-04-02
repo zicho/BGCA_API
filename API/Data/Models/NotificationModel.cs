@@ -10,5 +10,16 @@ namespace API.Data.Models
         public string Content { get; set; }
         public bool IsRead { get; set; }
         public NotificationType Type { get; set; }
+
+        public static NotificationModel CreateGameInvite(InviteGameModel model)
+        {
+            return new NotificationModel
+            {
+                Sender = model.Sender,
+                Recipient = model.Recipient,
+                Content = $"Player {model.Sender} invited you to play {model.NameOfGame}",
+                Type = NotificationType.GameInvite
+            };
+        }
     }
 }

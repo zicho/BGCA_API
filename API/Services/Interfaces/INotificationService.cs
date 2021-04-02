@@ -8,9 +8,9 @@ namespace API.Services.Interfaces
 {
     public interface INotificationService
     {
-        Task<ServiceResponse> SendPrivateMessage(PrivateMessageModel model);
+        Task<ServiceResponse> SendNotification(NotificationModel model);
 
-        Task<ServiceResponse<int>> GetUnreadCount(string userName);
+        Task<ServiceResponse<int>> GetUnreadNotificationsCount(string userName);
 
         Task<ServiceResponse<List<Notification>>> GetNotifications(string userName, int limit = 0, bool unreadOnly = false);
 

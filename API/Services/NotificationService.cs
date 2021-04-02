@@ -27,7 +27,7 @@ namespace API.Services
             _notificationHubContext = notificationHubContext;
         }
 
-        public async Task<ServiceResponse> SendPrivateMessage(PrivateMessageModel model)
+        public async Task<ServiceResponse> SendNotification(NotificationModel model)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace API.Services
                     Content = model.Content
                 });
 
-                await _notificationHubContext.Clients.Group(model.Recipient).SendPrivateMessage(model.Subject, model.Content);
+                await _notificationHubContext.Clients.Group(model.Recipient).SendNotice(model);
 
                 return new ServiceResponse();
             }
@@ -52,12 +52,12 @@ namespace API.Services
             }
         }
 
-        public async Task<ServiceResponse<int>> GetUnreadCount(string username)
+        public async Task<ServiceResponse<int>> GetUnreadNotificationsCount(string username)
         {
             try
             {
-                var unreadMessages = await _notificationRepository.GetWhere(x => x.IsRead == false && x.Recipient.Username == username);
-                return new ServiceResponse<int> { Data = unreadMessages.ToList().Count() };
+                var unreadNotifications = await _notificationRepository.GetWhere(x => x.IsRead == false && x.Recipient.Username == username);
+                return new ServiceResponse<int> { Data = unreadNotifications.ToList().Count() };
             }
             catch
             {

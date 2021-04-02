@@ -2,6 +2,7 @@
 {
     public enum NotificationType
     {
+        Generic,
         GameInvite,
         GameOpening,
         FriendRequest

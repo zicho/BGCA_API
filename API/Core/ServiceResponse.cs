@@ -5,6 +5,7 @@
         public ServiceResponse(bool success = true)
         {
             Success = success;
+            Message = success ? "Success" : "Request failed";
         }
 
         public bool Success { get; set; } = true;

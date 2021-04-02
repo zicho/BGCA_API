@@ -1,13 +1,13 @@
 ﻿using API.Controllers;
 using API.Core;
 using API.Data.Entities;
+using API.Data.Models;
 using API.Repositories;
 using API.Repositories.Interfaces;
 using API.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using SignalRChat.Hubs;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,18 +18,18 @@ namespace API.Services
         private readonly IBaseRepository<Session> _repository;
         private readonly IBaseRepository<Game> _gameRepository;
         private readonly UserRepository _userRepository;
-        private readonly IHubContext<NotificationHub, INotificationHub> _notificationHubContext;
+        private readonly INotificationService _notificationService;
 
         public SessionService(
             IBaseRepository<Session> repository,
             IBaseRepository<Game> gameRepository,
             UserRepository userRepository,
-            IHubContext<NotificationHub, INotificationHub> notificationHubContext)
+            INotificationService notificationService)
         {
             _repository = repository;
             _gameRepository = gameRepository;
             _userRepository = userRepository;
-            _notificationHubContext = notificationHubContext;
+            _notificationService = notificationService;
         }
 
         public async Task<ServiceResponse<Session>> Add(CreateSessionModel newSession)
@@ -80,16 +80,11 @@ namespace API.Services
             }
         }
 
-        public async Task<ServiceResponse<bool>> Invite(InviteGameModel model)
-        {
-            await _notificationHubContext.Clients.Group(model.Recipient).SendNotice($"Player {model.Sender} invited you to play {model.NameOfGame}");
-            return new ServiceResponse<bool>();
-        }
-    }
 
-    public class CreateSessionModel
-    {
-        public List<string> Players { get; set; } = new List<string>();
-        public int GameId { get; set; }
+        public async Task<ServiceResponse> Invite(InviteGameModel model)
+        {
+            await _notificationService.SendNotification(NotificationModel.CreateGameInvite(model));
+            return new ServiceResponse();
+        }
     }
 }

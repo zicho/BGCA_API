@@ -1,5 +1,6 @@
 ﻿using API.Core;
 using API.Data.Entities;
+using API.Data.Models;
 using API.Services;
 using API.Services.Interfaces;
 using AutoMapper;
@@ -28,16 +29,9 @@ namespace API.Controllers
         }
 
         [HttpPost("invite")]
-        public async Task<ServiceResponse<bool>> Invite(InviteGameModel model)
+        public async Task<ServiceResponse> Invite(InviteGameModel model)
         {
             return await _service.Invite(model);
         }
-    }
-
-    public class InviteGameModel
-    {
-        public string Sender { get; set; }
-        public string Recipient { get; set; }
-        public string NameOfGame { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace API.Services
                     Content = model.Content
                 });
 
-                await _notificationHubContext.Clients.Group(model.Recipient).SendPrivateMessage(model.Subject, model.Content);
+                await _notificationHubContext.Clients.Group(model.Recipient).SendPrivateMessage(model);
 
                 return new ServiceResponse();
             }

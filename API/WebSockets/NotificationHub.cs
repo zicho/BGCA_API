@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using API.Data.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
@@ -7,22 +8,22 @@ namespace SignalRChat.Hubs
 {
     public interface INotificationHub
     {
-        Task SendNotice(string messageContent);
+        Task SendNotice(NotificationModel model);
 
-        Task SendPrivateMessage(string messageSubject, string messageContent);
+        Task SendPrivateMessage(PrivateMessageModel model);
     }
 
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class NotificationHub : Hub<INotificationHub>
     {
-        public async Task SendNotice(string to, string messageContent)
+        public async Task SendNotice(NotificationModel model)
         {
-            //await Clients.Group(to).SendNotice(messageContent);
+            await Clients.Group(model.Recipient).SendNotice(model);
         }
 
-        public async Task SendPrivateMessage(string to, string messageSubject, string messageContent)
+        public async Task SendPrivateMessage(PrivateMessageModel model)
         {
-            await Clients.Group(to).SendPrivateMessage(messageSubject, messageContent);
+            await Clients.Group(model.Recipient).SendPrivateMessage(model);
         }
 
         public async override Task OnConnectedAsync()
