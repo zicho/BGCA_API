@@ -23,6 +23,10 @@ namespace API.Repositories.Interfaces
 
         Task<IEnumerable<T>> GetWhere(Expression<Func<T, bool>> predicate);
 
+        Task AddRange(IEnumerable<T> entities);
+
+        void RemoveRange(IEnumerable<T> entities);
+
         Task<int> CountAll();
 
         Task<int> CountWhere(Expression<Func<T, bool>> predicate);

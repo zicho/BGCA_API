@@ -5,7 +5,6 @@ using API.Repositories;
 using API.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using SignalRChat.Hubs;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,9 +39,7 @@ namespace API.Services
                     Sender = sender,
                     Recipient = recipient,
                     Subject = model.Subject,
-                    Content = model.Content,
-                    CreatedDate = DateTime.UtcNow,
-                    ModifiedDate = DateTime.UtcNow
+                    Content = model.Content
                 });
 
                 await _notificationHubContext.Clients.Group(model.Recipient).SendPrivateMessage(model.Subject, model.Content);
@@ -55,7 +52,7 @@ namespace API.Services
             }
         }
 
-        public async Task<ServiceResponse<int>> GetUnreadMessagesCount(string username)
+        public async Task<ServiceResponse<int>> GetUnreadCount(string username)
         {
             try
             {

@@ -49,6 +49,17 @@ namespace API.Repositories
             await Context.SaveChangesAsync();
         }
 
+        public async Task AddRange(IEnumerable<T> entities)
+        {
+            await Context.Set<T>().AddRangeAsync(entities);
+            await SaveChangesAsync();
+        }
+
+        public void RemoveRange(IEnumerable<T> entities)
+        {
+            Context.Set<T>().RemoveRange(entities);
+        }
+
         public async Task<List<T>> GetAll()
         {
             return await Context.Set<T>().ToListAsync();

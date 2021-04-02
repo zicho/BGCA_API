@@ -17,7 +17,7 @@ namespace SignalRChat.Hubs
     {
         public async Task SendNotice(string to, string messageContent)
         {
-            await Clients.Group(to).SendNotice(messageContent);
+            //await Clients.Group(to).SendNotice(messageContent);
         }
 
         public async Task SendPrivateMessage(string to, string messageSubject, string messageContent)

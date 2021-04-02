@@ -90,6 +90,7 @@ namespace API.Services
         public async Task<ServiceResponse<AuthUserModel>> Login(LoginUserModel dto)
         {
             var response = new ServiceResponse<AuthUserModel>();
+
             var user = await _repository.GetByUsername(dto.Username);
 
             if (user == null)

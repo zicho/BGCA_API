@@ -17,6 +17,10 @@ namespace API
 
             CreateMap<User, string>().ConvertUsing(new UserConverter());
 
+            CreateMap<Notification, PrivateMessageModel>();
+            CreateMap<ServiceResponse<Notification>, ServiceResponse<NotificationModel>>();
+            CreateMap<ServiceResponse<List<Notification>>, ServiceResponse<List<NotificationModel>>>();
+
             CreateMap<PrivateMessage, PrivateMessageModel>();
             CreateMap<ServiceResponse<PrivateMessage>, ServiceResponse<PrivateMessageModel>>();
             CreateMap<ServiceResponse<List<PrivateMessage>>, ServiceResponse<List<PrivateMessageModel>>>();
@@ -26,7 +30,7 @@ namespace API
         {
             public string Convert(User source, string destination, ResolutionContext context)
             {
-                return source.Username;
+                return source?.Username;
             }
         }
     }

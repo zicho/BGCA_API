@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using SignalRChat.Hubs;
 using System;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -31,7 +32,10 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
 
             services.AddDbContextPool<DataContext>(options => options
                 .UseMySql(Configuration.GetConnectionString("DefaultConnection")));
@@ -50,7 +54,10 @@ namespace API
             services.AddAutoMapper(typeof(Startup));
 
             services.AddMvc()
-                .AddJsonOptions(options => { options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault; });
+                .AddJsonOptions(options => { 
+                    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -86,12 +93,14 @@ namespace API
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<UserRepository>();
             services.AddScoped<MessageRepository>();
+            services.AddScoped<CountryRepository>();
 
             // services
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISessionService, SessionService>();
             services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<ICountryService, CountryService>();
 
             // websockets
 
@@ -106,6 +115,21 @@ namespace API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //var dataText = System.IO.File.ReadAllText("C:\\Projects\\BGCA_API\\API\\Assets\\countries_states_cities.json");
+            //Seeder.Seedit(dataText, app.ApplicationServices);
+
+            //using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+
+            //try
+            //{
+            //    var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
+            //    Seeder.Seed(context).Wait();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine(ex.Message);
+            //}
 
             app.UseHttpsRedirection();
 

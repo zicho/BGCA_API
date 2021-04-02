@@ -7,6 +7,7 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.6" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.10" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.0-preview.6.20312.15" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
@@ -19,6 +20,7 @@
       <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.6" />
       <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
       <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.21" />
+      <PackageReference Include="NEST" Version="7.10.1" />
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
     </ItemGroup>

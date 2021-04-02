@@ -4,5 +4,6 @@
     {
         GameInvite,
         GameOpening,
+        FriendRequest
     }
 }

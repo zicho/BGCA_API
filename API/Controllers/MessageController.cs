@@ -1,5 +1,6 @@
 ﻿using API.Core;
 using API.Data.Models;
+using API.Data.Static;
 using API.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -39,26 +40,28 @@ namespace API.Controllers
             return _mapper.Map<ServiceResponse<List<PrivateMessageModel>>>(await _service.GetPrivateMessages(username, limit));
         }
 
-        [HttpGet("{username}/unread/{limit?}")]
-        public virtual async Task<ServiceResponse<List<PrivateMessageModel>>> GetUnreadMessages(string username, int limit = 0)
-        {
-            //var user = HttpContext.User.FindFirstValue(ClaimTypes.Name);
+        //[HttpGet("{username}/unread/{limit?}")]
+        //public virtual async Task<ServiceResponse<List<PrivateMessageModel>>> GetUnreadMessages(string username, int limit = 0)
+        //{
+        //    //var user = HttpContext.User.FindFirstValue(ClaimTypes.Name);
 
-            //if (user != username && GetRoleFromHttpContext() != UserRoles.Admin)
-            //    return new ServiceResponse<int>(false) { Message = "You do not have access to this user" };
-            //return await _service.GetUnreadMessages(username);
-            return _mapper.Map<ServiceResponse<List<PrivateMessageModel>>>(await _service.GetPrivateMessages(username, limit, true));
-        }
+        //    //if (user != username && GetRoleFromHttpContext() != UserRoles.Admin)
+        //    //    return new ServiceResponse<int>(false) { Message = "You do not have access to this user" };
+        //    //return await _service.GetUnreadMessages(username);
+        //    return _mapper.Map<ServiceResponse<List<PrivateMessageModel>>>(await _service.GetPrivateMessages(username, limit, true));
+        //}
 
         [HttpGet("{username}/unread/count")]
         public virtual async Task<ServiceResponse<int>> GetUnreadMessagesCount(string username)
         {
-            //var user = HttpContext.User.FindFirstValue(ClaimTypes.Name);
+            var user = HttpContext.User.FindFirstValue(ClaimTypes.Name);
+            var role = GetRoleFromHttpContext();
 
-            //if (user != username && GetRoleFromHttpContext() != UserRoles.Admin)
-            //    return new ServiceResponse<int>(false) { Message = "You do not have access to this user" };
 
-            return await _service.GetUnreadMessagesCount(username);
+            if (user != username && role != UserRoles.Admin)
+                return new ServiceResponse<int>(false) { Message = "You do not have access to this user" };
+
+            return await _service.GetUnreadCount(username);
         }
 
         [HttpGet("{username}/unread/clear")]
