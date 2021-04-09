@@ -8,9 +8,9 @@ namespace API.Data.Entities
         public string Name { get; set; }
 
         [Required]
-        public int? MinPlayers { get; set; }
+        public int MinPlayers { get; set; }
 
         [Required]
-        public int? MaxPlayers { get; set; }
+        public int MaxPlayers { get; set; }
     }
 }

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    [Authorize(Policy = "AdminOrOwner")]
     [ApiController]
     public class MessageController : ControllerBase
     {
@@ -56,7 +56,6 @@ namespace API.Controllers
         {
             var user = HttpContext.User.FindFirstValue(ClaimTypes.Name);
             var role = GetRoleFromHttpContext();
-
 
             if (user != username && role != UserRoles.Admin)
                 return new ServiceResponse<int>(false) { Message = "You do not have access to this user" };

@@ -72,8 +72,8 @@ namespace API.Services
             {
                 var response = new ServiceResponse<bool>();
 
-                var sender = await _repository.GetById(model.SenderId);
-                var recipient = await _repository.GetById(model.RecipientId);
+                var sender = await _repository.GetByUsername(model.SenderUsername);
+                var recipient = await _repository.GetByUsername(model.RecipientUsername);
 
                 await _repository.AddFriendRequest(sender, recipient);
 
@@ -83,7 +83,7 @@ namespace API.Services
             }
             catch
             {
-                return new ServiceResponse<bool> { Success = false, Message = "Friend request failed?" };
+                return new ServiceResponse<bool> { Success = false, Message = "Friend request failed" };
             }
         }
 

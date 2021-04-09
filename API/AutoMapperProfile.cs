@@ -17,7 +17,7 @@ namespace API
 
             CreateMap<User, string>().ConvertUsing(new UserConverter());
 
-            CreateMap<Notification, PrivateMessageModel>();
+            CreateMap<Notification, NotificationModel>();
             CreateMap<ServiceResponse<Notification>, ServiceResponse<NotificationModel>>();
             CreateMap<ServiceResponse<List<Notification>>, ServiceResponse<List<NotificationModel>>>();
 

@@ -1,4 +1,5 @@
 ﻿using API.Core.Enums;
+using System;
 
 namespace API.Data.Models
 {
@@ -9,6 +10,7 @@ namespace API.Data.Models
         public string Subject { get; set; }
         public string Content { get; set; }
         public bool IsRead { get; set; }
+        public DateTime Received { get; set; } = DateTime.UtcNow;
         public NotificationType Type { get; set; }
 
         public static NotificationModel CreateGameInvite(InviteGameModel model)
