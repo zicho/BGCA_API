@@ -16,10 +16,14 @@ namespace API.Repositories
             return await Context.Users.AnyAsync(x => x.Username.ToLower() == username.ToLower());
         }
 
-        public async Task<User> GetByUsername(string username)
+        public async Task<User> GetByUsername(string username, bool includeProfile = false)
         {
+            if (includeProfile)
+                return await Context.Users.Include(u => u.Info).FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
+
             return await Context.Users.FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower());
         }
+
 
         public async Task AddFriendRequest(User sender, User recipient)
         {

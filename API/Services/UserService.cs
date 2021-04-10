@@ -1,6 +1,7 @@
 ﻿using API.Core;
 using API.Data.Entities.Users;
 using API.Data.Models;
+using API.Data.Models.User;
 using API.Repositories;
 using API.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
@@ -45,7 +46,16 @@ namespace API.Services
                 Username = dto.Username,
                 Role = dto.Role,
                 PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt
+                PasswordSalt = passwordSalt,
+                Info = new UserInfo
+                {
+                    Email = dto.Email,
+                    RealName = dto.Info.RealName,
+                    Desc = dto.Info.Desc,
+                    Country = dto.Info.Country,
+                    State = dto.Info.State,
+                    City = dto.Info.City,
+                }
             };
 
             try

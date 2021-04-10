@@ -2,6 +2,7 @@
 {
     public class UserInfoModel
     {
+        public string Email { get; set; }
         public string RealName { get; set; }
         public string Desc { get; set; }
         public string Country { get; set; }

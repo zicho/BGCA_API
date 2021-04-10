@@ -1,5 +1,6 @@
 ﻿using API.Core;
 using API.Data.Models;
+using API.Data.Models.User;
 using API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

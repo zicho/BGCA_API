@@ -1,6 +1,7 @@
 ﻿using API.Controllers.Interfaces;
 using API.Core;
 using API.Data.Models;
+using API.Data.Models.User;
 using API.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -25,9 +26,15 @@ namespace API.Controllers
         }
 
         [HttpGet("{username}")]
-        public async Task<ServiceResponse<AuthUserModel>> GetByUsername(string username)
+        public async Task<ServiceResponse<ViewUserModel>> GetByUsername(string username)
         {
-            return _mapper.Map<ServiceResponse<AuthUserModel>>(await _userService.GetByUsername(username));
+            return _mapper.Map<ServiceResponse<ViewUserModel>>(await _userService.GetByUsername(username));
+        }
+
+        [HttpGet("{username}/full")]
+        public async Task<ServiceResponse<ViewUserModel>> GetByUsernameFull(string username)
+        {
+            return _mapper.Map<ServiceResponse<ViewUserModel>>(await _userService.GetByUsername(username));
         }
 
         public async Task<ServiceResponse<List<AuthUserModel>>> GetAll()

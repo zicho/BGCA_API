@@ -16,6 +16,6 @@ namespace API.Data.Entities.Users
 
         public string Email { get; set; }
         public List<UserFriendship> Friends { get; set; }
-        public UserInfo Profile { get; set; }
+        public UserInfo Info { get; set; } = new UserInfo();
     }
 }

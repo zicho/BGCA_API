@@ -1,6 +1,7 @@
 ﻿using API.Core;
 using API.Data.Entities.Users;
 using API.Data.Models;
+using API.Data.Models.User;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

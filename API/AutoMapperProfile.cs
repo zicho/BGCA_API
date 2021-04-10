@@ -2,6 +2,7 @@
 using API.Data.Entities.Messaging;
 using API.Data.Entities.Users;
 using API.Data.Models;
+using API.Data.Models.User;
 using AutoMapper;
 using System.Collections.Generic;
 
@@ -24,6 +25,8 @@ namespace API
             CreateMap<PrivateMessage, PrivateMessageModel>();
             CreateMap<ServiceResponse<PrivateMessage>, ServiceResponse<PrivateMessageModel>>();
             CreateMap<ServiceResponse<List<PrivateMessage>>, ServiceResponse<List<PrivateMessageModel>>>();
+
+            CreateMap<UserInfo, UserInfoModel>();
         }
 
         private class UserConverter : ITypeConverter<User, string>
