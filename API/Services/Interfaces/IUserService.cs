@@ -19,7 +19,7 @@ namespace API.Services.Interfaces
         Task<ServiceResponse<User>> GetByUsername(string username);
 
         // authentication and registration
-        Task<ServiceResponse<CreateUserModel>> Register(CreateUserModel dto);
+        Task<ServiceResponse<AuthUserModel>> Register(CreateUserModel dto);
 
         Task<ServiceResponse<AuthUserModel>> Login(LoginUserModel dto);
 

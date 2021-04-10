@@ -30,9 +30,9 @@ namespace API.Services
             _notificationHubContext = myHub;
         }
 
-        public async Task<ServiceResponse<CreateUserModel>> Register(CreateUserModel dto)
+        public async Task<ServiceResponse<AuthUserModel>> Register(CreateUserModel dto)
         {
-            if (await UserExists(dto.Username)) return new ServiceResponse<CreateUserModel>
+            if (await UserExists(dto.Username)) return new ServiceResponse<AuthUserModel>
             {
                 Success = false,
                 Message = "Username taken"
@@ -51,14 +51,20 @@ namespace API.Services
             try
             {
                 await _repository.Add(user);
-                return new ServiceResponse<CreateUserModel>
+
+                return new ServiceResponse<AuthUserModel>
                 {
+                    Data = new AuthUserModel
+                    {
+                        Username = user.Username,
+                        JWT = CreateToken(user)
+                    },
                     Message = $"User '{user.Username}' was created successfully."
                 };
             }
             catch
             {
-                return new ServiceResponse<CreateUserModel>
+                return new ServiceResponse<AuthUserModel>
                 {
                     Success = false,
                     Message = "Error creating user"

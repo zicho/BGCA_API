@@ -1,13 +1,11 @@
-﻿namespace API.Data.Entities.Users
+﻿namespace API.Data.Models.User
 {
-    public class UserInfo : BaseEntity
+    public class UserInfoModel
     {
         public string RealName { get; set; }
         public string Desc { get; set; }
         public string Country { get; set; }
         public string State { get; set; }
         public string City { get; set; }
-        //public GeoCoordinate ExactPosition { get; set; }
-        // public TimeZoneInfo TimeZone { get; set; }
     }
 }

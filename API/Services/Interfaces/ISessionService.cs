@@ -1,5 +1,4 @@
-﻿using API.Controllers;
-using API.Core;
+﻿using API.Core;
 using API.Data.Entities;
 using API.Data.Models;
 using System.Threading.Tasks;

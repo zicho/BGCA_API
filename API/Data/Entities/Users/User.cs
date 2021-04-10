@@ -7,10 +7,14 @@ namespace API.Data.Entities.Users
     {
         [Required]
         public string Username { get; set; }
+
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+
         [Required]
         public string Role { get; set; }
+
+        public string Email { get; set; }
         public List<UserFriendship> Friends { get; set; }
         public UserInfo Profile { get; set; }
     }

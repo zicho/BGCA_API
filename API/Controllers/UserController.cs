@@ -1,15 +1,11 @@
 ﻿using API.Controllers.Interfaces;
 using API.Core;
-using API.Data.Entities.Locations;
 using API.Data.Models;
 using API.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -73,11 +69,5 @@ namespace API.Controllers
 
         //    return items.OrderBy(x => x.Name).ToList();
         //}
-
-
-
-
-
-
     }
 }

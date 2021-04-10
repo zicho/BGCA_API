@@ -2,11 +2,8 @@
 using API.Data.Models;
 using API.Services.Interfaces;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -17,7 +14,6 @@ namespace API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly INotificationService _service;
-
 
         public NotificationController(IMapper mapper, INotificationService service)
         {

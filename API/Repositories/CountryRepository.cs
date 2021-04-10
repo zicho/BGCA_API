@@ -1,5 +1,4 @@
 ﻿using API.Data;
-using API.Data.Entities;
 using API.Data.Entities.Locations;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -18,10 +17,12 @@ namespace API.Repositories
         {
             return await Context.Countries.Include(x => x.States).ToListAsync();
         }
+
         public async Task<List<Country>> GetAllCountriesWithStatesAndCities()
         {
             return await Context.Countries.Include(x => x.States).ThenInclude(x => x.Cities).ToListAsync();
         }
+
         public async Task<List<State>> GetCountryStates(string countryCode)
         {
             return await Context.States.Where(x => x.Country.CountryCode == countryCode).ToListAsync();

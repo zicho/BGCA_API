@@ -1,15 +1,10 @@
 ﻿using API.Core;
 using API.Data.Entities.Locations;
-using API.Data.Entities.Messaging;
-using API.Data.Models;
 using API.Repositories;
 using API.Services.Interfaces;
-using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
-using SignalRChat.Hubs;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Services
@@ -64,8 +59,8 @@ namespace API.Services
             //    var json = client.DownloadString("https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/countries%2Bstates%2Bcities.json");
             //    var list = JsonConvert.DeserializeObject<List<Country>>(json);
 
-                //    await _countryRepository.AddRange(list);
-                //}
+            //    await _countryRepository.AddRange(list);
+            //}
         }
     }
 }

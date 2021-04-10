@@ -4,11 +4,9 @@ using API.Repositories.Interfaces;
 using API.Services;
 using API.Services.Interfaces;
 using AutoMapper;
-using Culture;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,8 +14,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using SignalRChat.Hubs;
 using System;
-using System.Diagnostics;
-using System.Globalization;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -57,7 +53,8 @@ namespace API
             services.AddAutoMapper(typeof(Startup));
 
             services.AddMvc()
-                .AddJsonOptions(options => { 
+                .AddJsonOptions(options =>
+                {
                     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
                 });
@@ -107,13 +104,10 @@ namespace API
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<ICountryService, CountryService>();
 
-
             // websockets
 
             services.AddSignalR();
             //services.AddScoped<TestHub>();
-
-            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -146,12 +140,6 @@ namespace API
             app.UseCors("SiteCorsPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
-
-            //app.UseMiddleware<TimeZoneService>();
-
-            app.UseRequestCulture();
-
-
 
             var webSocketOptions = new WebSocketOptions()
             {

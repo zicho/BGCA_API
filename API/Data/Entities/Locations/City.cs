@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Data.Entities.Locations
 {
@@ -21,6 +16,7 @@ namespace API.Data.Entities.Locations
 
         [JsonProperty("latitude")]
         public string Latitude { get; set; }
+
         [JsonProperty("longitude")]
         public string Longitude { get; set; }
     }

@@ -2,13 +2,7 @@
 using API.Data.Entities.Locations;
 using API.Data.Entities.Messaging;
 using API.Data.Entities.Users;
-using API.Data.Static;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 
 namespace API.Data
 {
@@ -80,12 +74,9 @@ namespace API.Data
 
             //    modelBuilder.Entity<State>().HasData(list.Select(x => x.States));
 
-
-
             //    //modelBuilder.Entity<Country>().HasMany(x => x.States).WithOne();
             //    //modelBuilder.Entity<State>().HasOne(x => x.Country).WithMany().HasForeignKey(x => x.CountryCode);
             //    //modelBuilder.Entity<City>().HasData(list.SelectMany(x => x.States.SelectMany(x => x.Cities)));
-
 
             //    modelBuilder.Entity<Country>().HasData(list);
             //}
@@ -96,7 +87,6 @@ namespace API.Data
             //    var list = JsonConvert.DeserializeObject<List<City>>(json);
 
             //    int cityId = 1;
-
 
             //    foreach (var city in list)
             //    {

@@ -18,7 +18,7 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ServiceResponse<CreateUserModel>> Register(CreateUserModel dto)
+        public async Task<ServiceResponse<AuthUserModel>> Register(CreateUserModel dto)
         {
             return await _userService.Register(dto);
         }
