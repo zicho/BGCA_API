@@ -1,4 +1,5 @@
 ﻿using API.Data.Entities.Users;
+using System;
 
 namespace API.Data.Entities.Messaging
 {
@@ -9,5 +10,7 @@ namespace API.Data.Entities.Messaging
         public string Subject { get; set; }
         public string Content { get; set; }
         public bool IsRead { get; set; }
+        public DateTime SendDate { get; set; }
+        public DateTime ReceiveDate { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace API.Data.Entities.Users
         [Required]
         public string Role { get; set; }
         public List<UserFriendship> Friends { get; set; }
-        public UserProfile Profile { get; set; }
+        public UserInfo Profile { get; set; }
     }
 }

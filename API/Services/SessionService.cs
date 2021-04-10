@@ -1,12 +1,9 @@
-﻿using API.Controllers;
-using API.Core;
+﻿using API.Core;
 using API.Data.Entities;
 using API.Data.Models;
 using API.Repositories;
 using API.Repositories.Interfaces;
 using API.Services.Interfaces;
-using Microsoft.AspNetCore.SignalR;
-using SignalRChat.Hubs;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -79,7 +76,6 @@ namespace API.Services
                 };
             }
         }
-
 
         public async Task<ServiceResponse> Invite(InviteGameModel model)
         {
