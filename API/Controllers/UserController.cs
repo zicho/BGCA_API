@@ -26,15 +26,15 @@ namespace API.Controllers
         }
 
         [HttpGet("{username}")]
-        public async Task<ServiceResponse<ViewUserModel>> GetByUsername(string username)
+        public async Task<ServiceResponse<UserInfoModel>> GetByUsername(string username)
         {
-            return _mapper.Map<ServiceResponse<ViewUserModel>>(await _userService.GetByUsername(username));
+            return _mapper.Map<ServiceResponse<UserInfoModel>>(await _userService.GetByUsername(username));
         }
 
         [HttpGet("{username}/full")]
-        public async Task<ServiceResponse<ViewUserModel>> GetByUsernameFull(string username)
+        public async Task<ServiceResponse<UserInfoModel>> GetByUsernameFull(string username)
         {
-            return _mapper.Map<ServiceResponse<ViewUserModel>>(await _userService.GetByUsername(username));
+            return _mapper.Map<ServiceResponse<UserInfoModel>>(await _userService.GetByUsername(username, includeProfile: true));
         }
 
         public async Task<ServiceResponse<List<AuthUserModel>>> GetAll()

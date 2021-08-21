@@ -34,6 +34,7 @@ namespace API
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
 
             services.AddDbContextPool<DataContext>(options => options
@@ -57,6 +58,7 @@ namespace API
                 {
                     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                    
                 });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

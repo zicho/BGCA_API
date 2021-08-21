@@ -17,7 +17,7 @@ namespace API.Services.Interfaces
 
         Task<ServiceResponse<User>> Remove(int id);
 
-        Task<ServiceResponse<User>> GetByUsername(string username);
+        Task<ServiceResponse<User>> GetByUsername(string username, bool includeProfile = false);
 
         // authentication and registration
         Task<ServiceResponse<AuthUserModel>> Register(CreateUserModel dto);

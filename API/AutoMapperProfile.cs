@@ -13,7 +13,10 @@ namespace API
         public AutoMapperProfile()
         {
             CreateMap<User, AuthUserModel>();
+            CreateMap<User, UserInfoModel>();
             CreateMap<ServiceResponse<User>, ServiceResponse<AuthUserModel>>();
+            CreateMap<ServiceResponse<User>, ServiceResponse<UserInfoModel>>();
+            CreateMap<ServiceResponse<List<User>>, ServiceResponse<List<UserInfoModel>>>();
             CreateMap<ServiceResponse<List<User>>, ServiceResponse<List<AuthUserModel>>>();
 
             CreateMap<User, string>().ConvertUsing(new UserConverter());

@@ -39,6 +39,13 @@ namespace API.Services
                 Message = "Username taken"
             };
 
+            // this check is done on client side as well
+            if(dto.Password != dto.ConfirmPassword) return new ServiceResponse<AuthUserModel>
+            {
+                Success = false,
+                Message = "Passwords do not match."
+            };
+
             CreatePasswordHash(dto.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
             var user = new User
@@ -49,9 +56,7 @@ namespace API.Services
                 PasswordSalt = passwordSalt,
                 Info = new UserInfo
                 {
-                    Email = dto.Email,
                     RealName = dto.Info.RealName,
-                    Desc = dto.Info.Desc,
                     Country = dto.Info.Country,
                     State = dto.Info.State,
                     City = dto.Info.City,
@@ -152,10 +157,10 @@ namespace API.Services
             }
         }
 
-        public async Task<ServiceResponse<User>> GetByUsername(string username)
+        public async Task<ServiceResponse<User>> GetByUsername(string username, bool includeProfile = false)
         {
             var response = new ServiceResponse<User>();
-            var user = await _repository.GetByUsername(username);
+            var user = await _repository.GetByUsername(username, includeProfile);
 
             if (user == null)
             {

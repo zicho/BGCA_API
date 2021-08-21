@@ -9,6 +9,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/user")] // this controller is part of the "user" namespace but is not inheriting a generic controller. It also does not require authentication to use.
+    // consider maybe moving the contents of this controller to the yser controller? 
     public class AuthController : ControllerBase
     {
         private readonly IUserService _userService;
