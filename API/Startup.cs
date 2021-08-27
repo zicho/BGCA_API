@@ -99,7 +99,6 @@ namespace API
             services.AddScoped<CountryRepository>();
 
             // services
-            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISessionService, SessionService>();
             services.AddScoped<IMessageService, MessageService>();
