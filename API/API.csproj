@@ -25,34 +25,4 @@
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Update="WebLibrary\Models\AuthUserModel.ts">
-        <CustomToolNamespace>Data\Models\User\AuthUserModel.cs</CustomToolNamespace>
-      </None>
-      <None Update="WebLibrary\Models\CreateSessionModel.ts">
-        <CustomToolNamespace>Data\Models\CreateSessionModel.cs</CustomToolNamespace>
-      </None>
-      <None Update="WebLibrary\Models\CreateUserModel.ts">
-        <CustomToolNamespace>Data\Models\User\CreateUserModel.cs</CustomToolNamespace>
-      </None>
-      <None Update="WebLibrary\Models\FriendRequestModel.ts">
-        <CustomToolNamespace>Data\Models\User\FriendRequestModel.cs</CustomToolNamespace>
-      </None>
-      <None Update="WebLibrary\Models\InviteGameModel.ts">
-        <CustomToolNamespace>Data\Models\InviteGameModel.cs</CustomToolNamespace>
-      </None>
-      <None Update="WebLibrary\Models\LoginUserModel.ts">
-        <CustomToolNamespace>Data\Models\User\LoginUserModel.cs</CustomToolNamespace>
-      </None>
-      <None Update="WebLibrary\Models\NotificationModel.ts">
-        <CustomToolNamespace>Data\Models\NotificationModel.cs</CustomToolNamespace>
-      </None>
-      <None Update="WebLibrary\Models\PrivateMessageModel.ts">
-        <CustomToolNamespace>Data\Models\PrivateMessageModel.cs</CustomToolNamespace>
-      </None>
-      <None Update="WebLibrary\Models\UserInfoModel.ts">
-        <CustomToolNamespace>Data\Models\User\UserInfoModel.cs</CustomToolNamespace>
-      </None>
-    </ItemGroup>
-
 </Project>
